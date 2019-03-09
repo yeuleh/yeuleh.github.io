@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Productivity,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="总结一下我使用 GTD 的方式阅读网络文章（包括新闻）的工作流。本文中将提到的 App 和服务包括 IFTTT、Inoreader、Pocket、Reeder、RSSHub、Todoist、轻芒阅读（排名不分先后）。 文章来源的筛选目前网络上的信息可以说已经泛滥成灾，除了传统媒体的网上版本，各种社交网络、自媒体都在疯狂地向用户输出。但实际上其中的软文、水文、重复信息也占了非常大的比重。所以要从这些">
+<meta name="keywords" content="Productivity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我是如何如何阅读网络文章的">
+<meta property="og:url" content="http://blog.ulenium.com/2018/05/29/how-do-i-read-articles/index.html">
+<meta property="og:site_name" content="火星上的水族馆">
+<meta property="og:description" content="总结一下我使用 GTD 的方式阅读网络文章（包括新闻）的工作流。本文中将提到的 App 和服务包括 IFTTT、Inoreader、Pocket、Reeder、RSSHub、Todoist、轻芒阅读（排名不分先后）。 文章来源的筛选目前网络上的信息可以说已经泛滥成灾，除了传统媒体的网上版本，各种社交网络、自媒体都在疯狂地向用户输出。但实际上其中的软文、水文、重复信息也占了非常大的比重。所以要从这些">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-09T07:12:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我是如何如何阅读网络文章的">
+<meta name="twitter:description" content="总结一下我使用 GTD 的方式阅读网络文章（包括新闻）的工作流。本文中将提到的 App 和服务包括 IFTTT、Inoreader、Pocket、Reeder、RSSHub、Todoist、轻芒阅读（排名不分先后）。 文章来源的筛选目前网络上的信息可以说已经泛滥成灾，除了传统媒体的网上版本，各种社交网络、自媒体都在疯狂地向用户输出。但实际上其中的软文、水文、重复信息也占了非常大的比重。所以要从这些">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.ulenium.com/2018/05/29/how-do-i-read-articles/">
+
+
+
+
+
+  <title>我是如何如何阅读网络文章的 | 火星上的水族馆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">火星上的水族馆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">火星上的水族馆</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.ulenium.com/2018/05/29/how-do-i-read-articles/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Yeu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="火星上的水族馆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">我是如何如何阅读网络文章的</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T01:29:17+08:00">
+                2018-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/29/how-do-i-read-articles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/05/29/how-do-i-read-articles/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>总结一下我使用 GTD 的方式阅读网络文章（包括新闻）的工作流。<br>本文中将提到的 App 和服务包括 <a href="https://ifttt.com/" target="_blank" rel="noopener">IFTTT</a>、<a href="http://inoreader.com/" target="_blank" rel="noopener">Inoreader</a>、<a href="https://getpocket.com/" target="_blank" rel="noopener">Pocket</a>、Reeder、<a href="https://rsshub.js.org/" target="_blank" rel="noopener">RSSHub</a>、<a href="http://todoist.com/" target="_blank" rel="noopener">Todoist</a>、轻芒阅读（排名不分先后）。</p>
+<h2 id="文章来源的筛选"><a href="#文章来源的筛选" class="headerlink" title="文章来源的筛选"></a>文章来源的筛选</h2><p>目前网络上的信息可以说已经泛滥成灾，除了传统媒体的网上版本，各种社交网络、自媒体都在疯狂地向用户输出。但实际上其中的软文、水文、重复信息也占了非常大的比重。所以要从这些信息的洪水中，甄别出对自己有用的文章，就是阅读之前的第一步，也是非常重要的一步。<br>目前我阅读的来源，主要是两个：RSS 和轻芒阅读 App。</p>
+<h3 id="RSS"><a href="#RSS" class="headerlink" title="RSS"></a>RSS</h3><p>先说下 RSS。我从大约 10 多年前开始就入坑，一直以来都是一个重度的 RSS 用户。<br>有人说 RSS 已经落伍了，现在都是大数据、AI 推荐的时代。但个人认为，完全依赖于算法，会导致一个人的阅读面越来越狭窄。我曾经试用过一些“头条”类 App，包括今日头条、网易新闻等等。结果就是在我使用一段时间之后，遇到了如下几个问题，令我非常反感。</p>
+<ol>
+<li>推送会集中在某些类别的文章上，而且看来看去都有似曾相识的感觉</li>
+<li>在推送热点文章的时候，往往是一些哗众取宠的标题党文章</li>
+<li>信息流始终刷不完，不知不觉中会在一些垃圾信息中浪费时间</li>
+<li>据说这类 App 也会偷偷收集用户数据，用于广告推送</li>
+</ol>
+<p>而反之，RSS 虽然在开始需要自己去甄选一些资讯的来源，但是一旦确定下来，RSS 是不会根据个人喜好屏蔽或增加某类信息的输出；同时，RSS 的条数也是根据来源网站，多的一天几条，少的可能几天才会有一条，不会无限制的刷新。<br>目前我的订阅主要集中在一些科技类、阅读类的网站和博客上。使用的服务/工具稳定在 Inoreader + Reeder 上。</p>
+<p>其实，Google Reader 曾是我认为的 Google 最好的服务之一。但很遗憾，Google 于 2013 年关闭了该服务，从此之后我也试用了多款产品，包括鲜果阅读、Feedly、Inoreader、以及一些需要自己搭建的开源服务。<br>鲜果阅读曾经是一个比较好的选择，速度很快。但问题在于，它是一个国内服务，无法抓取墙外的信息，并且后来该服务也关停了。<br>Feedly 的问题则在于同步速度太慢。因此我目前选择了 Inoreader，既是国外服务，不存在抓取时的网络限制，同时同步速度也还不错。唯一的缺点在于免费版只有最基本的订阅功能，而且有广告。不过我使用 Reeder 作为阅读客户端，而广告也非常有节制，并不干扰阅读，所以就酱紫了。</p>
+<p>Reeder 则是 iOS 上公认最棒的 RSS 阅读器，所以选择它作为客户端毫无悬念。它速度稳定，支持包括 Inoreader、Feedly 等多种订阅服务，可以自定义文章显示的样式，甚至还内置了一个 Mercury Reader，能够抓取那些只输出摘要的 RSS（虽然不是每次都能成功）。<br>另外，Reeder 还有 macOS 版本。我之前在 macOS 上主力使用的是 ReadKit。这款 App 同样非常优秀，而且手势操作结合 Mac 的触摸板非常方便。可惜这家伙不思进取，很久都没有版本更新，也一直都不支持 Inoreader。后来恰逢 Reeder for Mac 推出了大版本升级，我在 Mac 平台上也转投 Reeder 了。</p>
+<h3 id="RSSHub"><a href="#RSSHub" class="headerlink" title="RSSHub"></a>RSSHub</h3><p>RSSHub 其实是 RSS 的一个补充。它的详细介绍可以见官网：<a href="https://rsshub.js.org" target="_blank" rel="noopener">RSSHub</a> 。简单来说就是一个能抓取一些不支持 RSS 订阅的网站，将其转换为 RSS 的订阅源。例如知乎专栏、豆瓣、简书等等。这样我就可以在 RSS 中一站抓取想看的文章，不需要专门再跑到这些网站上，或是下载它们的 App 去刷新了。<br>更赞的是，RSSHub 是免费开源的，完全可以自己搭建一个服务。当然，你需要有一个主机。部署方法在官网文档的 <a href="https://rsshub.js.org/install/" target="_blank" rel="noopener">部署</a> 这一章里。最简单的是用 Docker 的方式。目前我的主机里就跑了这么个 Docker 服务，帮我抓取一些知乎作者的专栏文章。</p>
+<p>和 RSSHub 类似的，还有一个开源服务 <a href="https://rsshub.js.org/install/" target="_blank" rel="noopener">Huginn</a> 。<br>Huginn 其实比 RSSHub 强大无数倍，抓取文章转换为 RSS 只是它的一个小功能。它更准确的定位应该是一个开源版的 IFTTT。我曾经也折腾过，试图用它将微信公众号转换为 RSS，但由于微信反爬虫功能不断升级，以及这玩意实在太耗费资源，我的小主机经常被它吃满内存，所以最后放弃了。</p>
+<h3 id="轻芒阅读"><a href="#轻芒阅读" class="headerlink" title="轻芒阅读"></a>轻芒阅读</h3><p>我放弃折腾 Huginn 还有一个重要的原因就是我发现了轻芒阅读这款 App。<br>看名字就知道，这也是一款阅读类 App，要说相似的话，和 Zaker 之类的比较像。不过它的界面不像 Zaker 那么花哨，还是以文字为主，比较符合我这种理工宅的审美。最重要的是轻芒阅读里可以订阅一些微信公众号的内容。这样我就不用在微信里订阅一大堆公众号，整天收推送了。<br>当然，轻芒阅读其实就是自己的后台服务去抓取微信公众号的内容，然后推到客户端。所以不是所有的微信号都能在轻芒里订到，必须是一些相对热门的，在其服务中有收录的，才能订阅。但这也解决了我阅读网文的一大痛点了。</p>
+<p>同类型的 App，我还尝试过即刻等，但这些 App 仍然带着头条类 App 的缺点——会按算法瞎搞我的时间线，推它认为“我喜欢看”的文章。前面说了，我很反感这一点，所以最终这些 App 都没能在我手机里留下。</p>
+<h2 id="读文章的工作流"><a href="#读文章的工作流" class="headerlink" title="读文章的工作流"></a>读文章的工作流</h2><p>上面介绍了我目前订阅新闻和文章的服务及工具。虽然这些订阅来源都是我自己选的，但其实数量也非常多，一天下来也能刷出来 3 位数的新文章。那么我是如何阅读这些文章的呢？下面介绍一下我目前采用的工作流。</p>
+<p><em>说到工作流，感觉好像是非常正式的样子，其实只是一个术语，代表我目前阅读的一个流程和习惯性动作。</em></p>
+<h3 id="第一步：快速浏览"><a href="#第一步：快速浏览" class="headerlink" title="第一步：快速浏览"></a>第一步：快速浏览</h3><p>空闲的时候我就会随手刷一下 Reeder 或是轻芒 App，看到了新的文章时，首先看一下标题，是否是自己感兴趣或关心的话题。完全不感兴趣的就直接“标记为已读”，其它的则视内容的多少、此刻空闲时间的长短、是否需要集中精力进行深度阅读等要素，决定立刻阅读，或是加入“稍后读”列表。<br>例如一些即时新闻、比较轻松的文章，立刻利用随便时间看完。即使在大脑里没留下什么印象也无所谓。<br>对于另外一些文章，例如某些事件的深度解读、一些技术的详细讲解（甚至需要阅读代码）等，则通过 Reeder 或系统分享功能，发送到 Pocket 中。</p>
+<p>目前稍后读类的应用很多，除了我正在使用的 Pocket，还有比较著名的 Instapaper，甚至 Safari 自身也带有这个功能。但是考虑到平台兼容，我还是选择了专门的服务。而在这些服务中选择 Pocket 而非 Instappaer 则是因为， Instapaper 在抓取一些带有代码的网页时，会丢失代码块的格式，导致文章变得难以阅读。而 Pocket 在这方面会做的更好一些。</p>
+<h3 id="第二步：加入-TODO"><a href="#第二步：加入-TODO" class="headerlink" title="第二步：加入 TODO"></a>第二步：加入 TODO</h3><p>文章光发到 Pocket 里，其实可能也会落入“再也不读”的境地。为了避免这一惨剧的发生，我还要同时把阅读这篇文章作为一个 Task 加入到 Todo list 中，利用我目前正在实践的 GTD 工作流来完成阅读。</p>
+<p>目前我在使用 Todoist 作为 GTD 的主要工具。其优点在于采集任务非常方便。当然，如果需要我手动输入的话，即使在输入方面优化的再出色，也不能称之为“非常方便”（没错，我就是在讽刺 TNT）。<br>实际上 Todoist 是支持 IFTTT 自动添加 Task 的。所以我在 IFTTT 上跑了一个 job：Pocket 中新增文章之后，自动向 Todoist 中插入一个 Task，截止时间设定为 3 日后。</p>
+<p><em>这里为了区分 Todoist 中的“任务”和 IFTTT 中的“任务”，使用了英文单词，并非故意装逼。</em></p>
+<h3 id="第三步：阅读文章"><a href="#第三步：阅读文章" class="headerlink" title="第三步：阅读文章"></a>第三步：阅读文章</h3><p>经过上面的操作，文章就已经进入我每天的任务体系里了。<br>我目前的习惯是每天早上整理一次当天的任务列表。如果阅读任务太多，就在其中挑选最感兴趣，或是对于最近工作、生活最有帮助的几篇文章留下，然后将其他文章全部延后到次日阅读。<br>如果没有阅读任务，则到所有未读文章的任务列表中（我建了专门的一个 List 保存这类任务），同样是寻找最感兴趣的文章，将完成日期设置为今天。<br>这样基本可以保证我会关注到阅读这件事上。在有空的时候，就会打开 Pocket 读一篇文章。读完之后，再到 Todoist 中划掉（可惜这件事不能自动完成）。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>以上大概介绍了我目前阅读网络文章的一整套工作流以及工具。<br>看起来很复杂，使用到了 7 个服务/工具，但实际上仔细看下来，IFTTT、RSSHub 都是配置一次之后就自动运行的。Inoreader 作为背后的服务，实际上我也基本不需要打理。Todoist 则是我 GTD 的主要工具，不光是阅读用到，每天做很多其他事的时候都会用到。而真正在聚焦在阅读这件事上时，主要就是通过 Reeder 和轻芒采集，通过 Pocket 深度阅读。<br>而工作流中的各个步骤，也有不少是自动化完成。需要自己动脑动手的，形成习惯之后也就是个下意识的动作而已。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leon Yeu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.ulenium.com/2018/05/29/how-do-i-read-articles/" title="我是如何如何阅读网络文章的">http://blog.ulenium.com/2018/05/29/how-do-i-read-articles/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Productivity/" rel="tag"># Productivity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/introduce-to-mp4-moov/" rel="next" title="MP4 格式简介及 MOOV 解析">
+                <i class="fa fa-chevron-left"></i> MP4 格式简介及 MOOV 解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/05/better-biometrics-in-android-p/" rel="prev" title="Android P 中更好的生物认证（译文）">
+                Android P 中更好的生物认证（译文） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Leon Yeu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yeuleh" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yeuleh" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章来源的筛选"><span class="nav-number">1.</span> <span class="nav-text">文章来源的筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSS"><span class="nav-number">1.1.</span> <span class="nav-text">RSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RSSHub"><span class="nav-number">1.2.</span> <span class="nav-text">RSSHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轻芒阅读"><span class="nav-number">1.3.</span> <span class="nav-text">轻芒阅读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读文章的工作流"><span class="nav-number">2.</span> <span class="nav-text">读文章的工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：快速浏览"><span class="nav-number">2.1.</span> <span class="nav-text">第一步：快速浏览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：加入-TODO"><span class="nav-number">2.2.</span> <span class="nav-text">第二步：加入 TODO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：阅读文章"><span class="nav-number">2.3.</span> <span class="nav-text">第三步：阅读文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon Yeu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ulenium.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.ulenium.com/2018/05/29/how-do-i-read-articles/';
+          this.page.identifier = '2018/05/29/how-do-i-read-articles/';
+          this.page.title = '我是如何如何阅读网络文章的';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ulenium.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

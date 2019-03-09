@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo,Github Pages,Markdown,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="标题实际上应该是“为何我要选择 Hexo 搭建博客”，不过尚未验证 title 字段对中文支持的如何，所以暂时先放个英文标题吧。。 为何选择 Hexo言归正传，说说为什么选择 Hexo。其实也很简单，搭建 Blog 纯粹是因为买了个域名，不想放在那浪费，但又不想再花钱买主机空间了，所以就想利用 Github Pages 搭建一个静态博客。再因为基于 Github Pages 搭建静态博客的方案也没">
+<meta name="keywords" content="Hexo,Github Pages,Markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo &amp; My Blog">
+<meta property="og:url" content="http://blog.ulenium.com/2016/09/27/Hexo-My-Blog/index.html">
+<meta property="og:site_name" content="火星上的水族馆">
+<meta property="og:description" content="标题实际上应该是“为何我要选择 Hexo 搭建博客”，不过尚未验证 title 字段对中文支持的如何，所以暂时先放个英文标题吧。。 为何选择 Hexo言归正传，说说为什么选择 Hexo。其实也很简单，搭建 Blog 纯粹是因为买了个域名，不想放在那浪费，但又不想再花钱买主机空间了，所以就想利用 Github Pages 搭建一个静态博客。再因为基于 Github Pages 搭建静态博客的方案也没">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-09T07:12:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo &amp; My Blog">
+<meta name="twitter:description" content="标题实际上应该是“为何我要选择 Hexo 搭建博客”，不过尚未验证 title 字段对中文支持的如何，所以暂时先放个英文标题吧。。 为何选择 Hexo言归正传，说说为什么选择 Hexo。其实也很简单，搭建 Blog 纯粹是因为买了个域名，不想放在那浪费，但又不想再花钱买主机空间了，所以就想利用 Github Pages 搭建一个静态博客。再因为基于 Github Pages 搭建静态博客的方案也没">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.ulenium.com/2016/09/27/Hexo-My-Blog/">
+
+
+
+
+
+  <title>Hexo & My Blog | 火星上的水族馆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">火星上的水族馆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">火星上的水族馆</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.ulenium.com/2016/09/27/Hexo-My-Blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Yeu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="火星上的水族馆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Hexo & My Blog</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-27T01:23:04+08:00">
+                2016-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/27/Hexo-My-Blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/27/Hexo-My-Blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>标题实际上应该是“为何我要选择 Hexo 搭建博客”，不过尚未验证 <code>title</code> 字段对中文支持的如何，所以暂时先放个英文标题吧。。</p>
+<h2 id="为何选择-Hexo"><a href="#为何选择-Hexo" class="headerlink" title="为何选择 Hexo"></a>为何选择 Hexo</h2><p>言归正传，说说为什么选择 Hexo。<br>其实也很简单，搭建 Blog 纯粹是因为买了个域名，不想放在那浪费，但又不想再花钱买主机空间了，所以就想利用 Github Pages 搭建一个静态博客。<br>再因为基于 Github Pages 搭建静态博客的方案也没多少可选项。随手搜了一下 “Github Pages” + “Blog” 的关键字就冒出来很多 Hexo 的文章，而且又支持 Markdown 语法（这很关键），所以就自然而然咯。<br>可能是因为基于 Nodejs，使用起来相对方便，命令也比传统的 Jykell 少，所以最近就比较火吧。<br>说起 Jykell，我之前貌似也用过，不过已经完全忘光光了。。所以也不存在学习成本的问题。。</p>
+<h2 id="为什么看重-Markdown"><a href="#为什么看重-Markdown" class="headerlink" title="为什么看重 Markdown"></a>为什么看重 Markdown</h2><p>为什么说 Markdown 很关键呢？这就要多扯几句了。<br>接触 Markdown 也有不少年头了，在部门里也试图过推广，还在自建的 redmine 里强行开启了 Markdown 模式。然并卵，公司官方都是用 MS Office 那一套，同事们也大多不愿意花费时间在这种并不能提高工作效率的事情上，所以基本上没有人在好好的使用。<br>那么我看重 Markdown 什么呢？</p>
+<ol>
+<li>可读性<br>虽然加了语法 tag，但仍然是纯文本。如果是 Word 文档，如果没有装 Office 就没法打开，而 Markdown 即使不输出为 HTML 或 PDF 格式，用记事本一样可以阅读。<br>并且 Markdown 的语法标签还没有到干扰阅读的程度。这里有个反例就是 HTML。纯粹表现文本的 HTML 使用的标签也并不比 Markdown 多，但直接阅读源码实在是辣眼睛。。</li>
+<li>轻量<br>语法不多，但是够用。用得最多也就是标题、列表，还有对于程序员来说非常好用的代码块，在实现的比较好的 Markdown 渲染器上，还可以实现语法高亮。</li>
+</ol>
+<p>当然，Markdown 也存在缺点，而且也很明显。</p>
+<ol>
+<li>学习成本<br>虽然我觉得不高，但足以挡住一批 Word 党了。。（还是要深深的怨念一下）</li>
+<li>缺少统一标准<br>这个可能是 Markdown 最为致命的一个缺点。虽然语法不多，但却没有一个统一规范和标准。各家 Markdown 编辑器几乎都有自己的方言，有的还互相冲突。。比如同是表达粗体，某些编辑器用<code>**</code>，有些却用<code>__</code>。。</li>
+<li>无法制表<br>对我来说表格也算是个比较常用的格式，至少比 LaTex 实用一万多倍。但是原生 Markdown 却不支持。。好在我买的 MWeb 支持，但这又涉及到上一个问题：各家编辑器都有方言。。</li>
+</ol>
+<h2 id="如何搭建静态-Blog"><a href="#如何搭建静态-Blog" class="headerlink" title="如何搭建静态 Blog"></a>如何搭建静态 Blog</h2><p>那么如何使用 Hexo 在 Github Pages 上搭建一个静态 Blog 呢。<br>其实本来不打算写，因为网上相关教程已经够多了，不过趁着刚刚搭建好 Blog 的兴奋劲，总要写点什么，那么就简单总结一下这个 Blog 的搭建过程吧。。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>我用的是 Mac，使用自带的 Shell 界面，很多事情就好办很多</p>
+<ul>
+<li><p>首先你需要安装 Nodejs 和 npm，因为 Hexo 是基于 Nodejs 开发的。我本地安装了 Homebrew，所以直接运行下面的命令就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install nodejs</span><br><span class="line">brew install npm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后安装 Hexo，同样一行命令搞定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="构建静态博客"><a href="#构建静态博客" class="headerlink" title="构建静态博客"></a>构建静态博客</h3><ul>
+<li><p>首先需要一个目录，这个目录中初始化 Hexo 的环境，所有的博客内容都将放在这个目录中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;blog directory&gt;</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>等待命令执行完毕之后，其实静态 Blog 就已经生成好了，此时通过以下命令就可以操作你的 Blog</p>
+<ul>
+<li><p>新建一篇博文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post &quot;blog title&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改了配置文件，或者新写了 Blog 之后，用这个命令重新生成 Blog 的静态内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动一个内建的 HTTP Server，这样就可以通过 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 预览 Blog 了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>当然，我们还需要自定义一下 Blog，否则跟别人的都长成一样多没意思</p>
+<ul>
+<li><code>_config.xml</code>：可以修改 Blog 的名字、作者、URL 格式等等</li>
+<li>主题：在 <a href="https://hexo.io/themes" target="_blank" rel="noopener">https://hexo.io/themes</a> 选好了之后，将对应主题用 git clone 到 themes 文件夹中，然后修改<code>_config.xml</code>中的<code>theme</code>参数即可</li>
+<li>其它：通过插件还可以生成 RSS Feed，以及一些其他功能，由于天色已晚，暂时没有再折腾了，留待日后再说。。</li>
+</ul>
+</li>
+</ul>
+<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><p>这时候就需要一个 Github 账号了。<br>在 Github 中新建一个 Repository，注意名字需要叫<code>xxxx.github.io</code>，这样生成出来的 Github Pages 页面才会是 <a href="https://xxxx.github.io" target="_blank" rel="noopener">https://xxxx.github.io</a> 这样的域名。不知道这是什么规则，也没有细查 Github Pages 的帮助了。不过我第一次是弄错了，直接建了个 Repository 就叫 <code>blog</code>，结果生成出来的域名是 <a href="https://github.com/username/blog" target="_blank" rel="noopener">https://github.com/username/blog</a> 。<br>之后要将 Hexo 生成的内容部署到 Github Pages 上，实际上就是把 <code>hexo g</code> 生成出来的 <code>public</code> 文件夹 push 到 xxxx.github.io 这个仓库里。<br>不过 Hexo 自己也提供了一个插件，就使得发布过程变得简单了许多。</p>
+<ul>
+<li><p>安装 hexo-deployer-git，又是一条命令的事</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>_config.xml</code>，添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:username/repository.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果没有配置过 ssh 访问 github 的话，需要用 ssh-keygen 生成一对 RSA 密钥，并将公钥内容添加到 Github 的 Settings 里。这里就不赘述了。</p>
+</li>
+<li>执行 <code>hexo d</code> 即可完成部署</li>
+</ul>
+<h2 id="域名绑定"><a href="#域名绑定" class="headerlink" title="域名绑定"></a>域名绑定</h2><p>这一节实际上跟 Hexo 就没什么关系了。Github Pages 本身对于域名绑定就支持的很好。配置起来也相当容易。</p>
+<h3 id="Namecheap"><a href="#Namecheap" class="headerlink" title="Namecheap"></a>Namecheap</h3><p>我的域名是在 Namecheap.com 上买的，在 Namecheap 的域名管理页面，选择「Advanced DNS」，添加一个「CNAME Record」。<br>然后在<code>Host</code>里填上想要绑定的二级域名，比如我填的就是<code>blog</code>；在<code>value</code>里填 Github Pages 生成的 xxx.github.io 即可。</p>
+<h3 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h3><p>Github 这边的配置就更加简单了。在 Repository 的根目录下新建一个名为<code>CNAME</code>的纯文本文件，文件内容是独立域名全称，比如<code>blog.ulenium.com</code>。<br>同时，在 Repository 的 Settings 页面里，也有个<code>Custom domain</code>的设置项。在这里填入自己的独立域名也可以进行绑定。（实际上就是 Github 自动帮你添加一个 CNAME 文件）<br>不过需要注意的一点是，由于 Hexo deploy 的时候是直接 push 整个目录的，所以这个 CNAME 最好放到本地 Hexo 生成的<code>source</code>目录中。否则每次使用<code>hexo d</code>部署，就会把 Repository 里的 CNAME 文件给删掉。。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>以上就是我使用 Hexo + Github Pages 搭建静态博客的整个过程。夜深了，睡觉去。😂</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leon Yeu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.ulenium.com/2016/09/27/Hexo-My-Blog/" title="Hexo & My Blog">http://blog.ulenium.com/2016/09/27/Hexo-My-Blog/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/Github-Pages/" rel="tag"># Github Pages</a>
+          
+            <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/09/traveling-to-okinawa/" rel="prev" title="沖縄の旅 2017-05">
+                沖縄の旅 2017-05 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Leon Yeu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yeuleh" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yeuleh" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为何选择-Hexo"><span class="nav-number">1.</span> <span class="nav-text">为何选择 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么看重-Markdown"><span class="nav-number">2.</span> <span class="nav-text">为什么看重 Markdown</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何搭建静态-Blog"><span class="nav-number">3.</span> <span class="nav-text">如何搭建静态 Blog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建静态博客"><span class="nav-number">3.2.</span> <span class="nav-text">构建静态博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布"><span class="nav-number">3.3.</span> <span class="nav-text">发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名绑定"><span class="nav-number">4.</span> <span class="nav-text">域名绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Namecheap"><span class="nav-number">4.1.</span> <span class="nav-text">Namecheap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Github-Pages"><span class="nav-number">4.2.</span> <span class="nav-text">Github Pages</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon Yeu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ulenium.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.ulenium.com/2016/09/27/Hexo-My-Blog/';
+          this.page.identifier = '2016/09/27/Hexo-My-Blog/';
+          this.page.title = 'Hexo & My Blog';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ulenium.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

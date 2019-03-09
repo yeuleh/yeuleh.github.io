@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,Multimedia,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言（by Leon Yeu）最近的工作涉及到在 Android 上适配一个基于 GStreamer 的媒体组件。GStreamer 在播放 MIDI 时使用一个开源的 MIDI 软件合成器叫做 FluidSynth，因此调研了一下将 FluidSynth 移植到 Android 上的解决方案，并找到了一篇文章，感觉很有帮助。经原作者授权，将全文翻译并转载在本 Blog。其中 NFluidSynt">
+<meta name="keywords" content="Android,Multimedia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用于 Android 的 FluidSynth（译）">
+<meta property="og:url" content="http://blog.ulenium.com/2019/03/09/fluidsynth-for-android/index.html">
+<meta property="og:site_name" content="火星上的水族馆">
+<meta property="og:description" content="前言（by Leon Yeu）最近的工作涉及到在 Android 上适配一个基于 GStreamer 的媒体组件。GStreamer 在播放 MIDI 时使用一个开源的 MIDI 软件合成器叫做 FluidSynth，因此调研了一下将 FluidSynth 移植到 Android 上的解决方案，并找到了一篇文章，感觉很有帮助。经原作者授权，将全文翻译并转载在本 Blog。其中 NFluidSynt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-09T07:14:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用于 Android 的 FluidSynth（译）">
+<meta name="twitter:description" content="前言（by Leon Yeu）最近的工作涉及到在 Android 上适配一个基于 GStreamer 的媒体组件。GStreamer 在播放 MIDI 时使用一个开源的 MIDI 软件合成器叫做 FluidSynth，因此调研了一下将 FluidSynth 移植到 Android 上的解决方案，并找到了一篇文章，感觉很有帮助。经原作者授权，将全文翻译并转载在本 Blog。其中 NFluidSynt">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.ulenium.com/2019/03/09/fluidsynth-for-android/">
+
+
+
+
+
+  <title>用于 Android 的 FluidSynth（译） | 火星上的水族馆</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">火星上的水族馆</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">火星上的水族馆</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.ulenium.com/2019/03/09/fluidsynth-for-android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Yeu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="火星上的水族馆">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">用于 Android 的 FluidSynth（译）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T14:51:04+08:00">
+                2019-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/09/fluidsynth-for-android/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/09/fluidsynth-for-android/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言（by-Leon-Yeu）"><a href="#前言（by-Leon-Yeu）" class="headerlink" title="前言（by Leon Yeu）"></a>前言（by Leon Yeu）</h2><p>最近的工作涉及到在 Android 上适配一个基于 <a href="https://gstreamer.freedesktop.org" target="_blank" rel="noopener">GStreamer</a> 的媒体组件。GStreamer 在播放 MIDI 时使用一个开源的 MIDI <a href="https://en.wikipedia.org/wiki/Software_synthesizer" target="_blank" rel="noopener">软件合成器</a>叫做 <a href="www.fluidsynth.org">FluidSynth</a>，因此调研了一下将 FluidSynth 移植到 Android 上的解决方案，并找到了一篇文章，感觉很有帮助。经原作者授权，将全文翻译并转载在本 Blog。<br>其中 NFluidSynth 相关的内容，由于本人已经许久没有摸过 .NET 相关的技术，原文就没有理解的非常清楚，如有翻译上的错误，敬请指出。</p>
+<ul>
+<li>原文标题：FluidSynth for Android</li>
+<li>作者：<a href="https://github.com/atsushieno" target="_blank" rel="noopener">Atsushi Eno</a></li>
+<li>原文链接：<a href="https://dev.to/atsushieno/fluidsynth-for-android--269i" target="_blank" rel="noopener">https://dev.to/atsushieno/fluidsynth-for-android--269i</a></li>
+</ul>
+<p>注意：本文为译文，如需转载或引用，请注明并附上英文原作的链接。</p>
+<p>以下正文开始。</p>
+<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>我有一个不为人知的项目是 FluidSynth for Android。Android 从 6.0 开始支持自己的 <a href="https://developer.android.com/reference/android/media/midi/package-summary.html" target="_blank" rel="noopener">MIDI API</a> 以及基于 BLE 的 MIDI 连接，这就使得连接 MIDI 设备到 Android 成为了可能（如果想阅读我的日文文章，它是<a href="https://booth.pm/ja/items/126263" target="_blank" rel="noopener">『Android Masters！』</a>一书的一部分）。其中有一个技术上很酷炫的特性是支持虚拟 MIDI 设备服务，这样就像在其他操作系统（Windows、Mac、Linux、iOS）一样，任何人都可以实现一个 MIDI 设备服务，作为 MIDI 输入设备或输出设备（或同为二者）提供出来，其他应用程序就可以作为客户端连接上去。<br>这个特性被设计为可以通过服务运行一个软件 MIDI 合成器，所以为何不移植一个现成的方案呢？我这么想着，所以最终将 <a href="www.fluidsynth.org">FluidSynth</a> 搬到了 Android 上。</p>
+<h2 id="编译系统"><a href="#编译系统" class="headerlink" title="编译系统"></a>编译系统</h2><p>这并不简单。首先，如果最终没有声音输出，这就毫无意义。 FluidSynth 作为一个软件合成器，支持各种音频 API，但并不包括 Android。Android 平台提供了两种音频接口：AudioTrack 和 <a href="https://developer.android.com/ndk/guides/audio/opensl/index.html" target="_blank" rel="noopener">OpenSL ES</a>（在我进行实现的时候，还没有出现 AAudio 和 Oboe）。FluidSynth 的源码目录 <a href="https://github.com/FluidSynth/fluidsynth/tree/master/src/drivers" target="_blank" rel="noopener">drivers</a> 中提供了音频抽象层，所以只需要在其中添加一个针对 Android 的实现就可以了，是么？</p>
+<p>然而，知易行难。</p>
+<p>首先，FluidSynth 需要使用 Android NDK 进行编译。原生的 FluidSynth 并不支持编译为 Android 版。这很可能是因为 FluidSynth 依赖于 glib，没有很简单的方法能使其构建在 Android 上。glib 是基于 autotools 进行构建的，和 NDK 不太对付。</p>
+<p>但是等等，已经有一些已知的依赖 glib 的应用和库可以在 Android 上运行了。比如 <a href="https://play.google.com/store/apps/details?id=org.dandroidmobile.xgimp" target="_blank" rel="noopener">Gimp</a>，对吧？但它是运行在一些奇怪的 X server 上层的。那么，GStreamer 呢？它是<a href="https://gstreamer.freedesktop.org/modules/gst-android.html" target="_blank" rel="noopener">支持 Android</a> 的。但怎么构建呢？……于是我找到了 <a href="https://gstreamer.freedesktop.org/documentation/installing/building-from-source-using-cerbero.html" target="_blank" rel="noopener">Cerbero</a> 构建系统。它通过 autotools 的方式，为 Android 和其他平台构建包括 glib 在内的所有模块。</p>
+<p>在 Cerbero 中，所有的依赖库都通过定制“recipe”来进行构建。Cerbero 的终极目标是构建 GStreamer，但可以通过添加 recipe 的方式编译任何软件。并且很容易就可以通过这种方式将 FluidSynth 添加到构建中。</p>
+<p>但是为了支持一些自定义的 Android NDK 设置，我在原生基础上进行了一些修改，所以我的 Cerbero 构建树并不兼容原生，但最终可以编译出一个适用于 Android 平台的 libfluidsynth.so。</p>
+<p>最终，所有的代码可以在如下的 Github 仓库查阅。<br><a href="https://github.com/atsushieno/android-fluidsynth/" target="_blank" rel="noopener">https://github.com/atsushieno/android-fluidsynth/</a></p>
+<h2 id="Android-OpenSLES-的实现"><a href="#Android-OpenSLES-的实现" class="headerlink" title="Android/OpenSLES 的实现"></a>Android/OpenSLES 的实现</h2><p>接下来，需要添加 opensles 的实现了。由于代码结构很清晰，所以很容易就可以添加一个 <code>fluid_opensles.c</code>。一个小问题是，只能找到 Victor Lazzarini 的一个<a href="https://bitbucket.org/victorlazzarini/android-audiotest/src" target="_blank" rel="noopener">参考示例</a>（<a href="https://audioprograming.wordpress.com/category/android/" target="_blank" rel="noopener">他的 blog</a> 曾是公开的，但现在不开放访问了……）。甚至在一本日本发行的 NDK 的书中找到的示例，也和它基本一样。</p>
+<p>另外，我还需要为 SoundFont 文件实现一个支持自定义流的加载器。FluidSynth 只提供了一个基于文件名，通过本地文件 I/O 接口实现的加载器。所以我需要扩展 FluidSynth 来支持自定义的 SF 加载器——包括抽象 API 和基于 Android assets 的实现。</p>
+<p>由于我的应用是用 C# 编写的，我将这些扩展添加到了我的 P/Invoke wrapper 里（如果是 Java 应用，那么就需要添加 JNI 调用）。</p>
+<h2 id="NFluidsynth-和-FluidsynthMidiService"><a href="#NFluidsynth-和-FluidsynthMidiService" class="headerlink" title="NFluidsynth 和 FluidsynthMidiService"></a>NFluidsynth 和 FluidsynthMidiService</h2><p>FluidSynth是跨平台的，在 Linux 上运行良好，这使我更容易开发 C＃ 绑定。FluidSynth 本身可用作虚拟 MIDI 合成器，但要从系统的 MIDI 服务入口点桥接，我们必须使 FluidSynth 函数可调用，并映射这些入口点。</p>
+<p>因此，我使用 P/Invoke 为 FluidSynth API 进行了绑定，发布在 <a href="https://github.com/atsushieno/nfluidsynth" target="_blank" rel="noopener">https://github.com/atsushieno/nfluidsynth</a> 。并使它成为 Xamarin。Android 的库几乎没花工夫。我只需要关心如何将 Android 特定的扩展构建在 Android 上。</p>
+<p>最后，我在这个 NFluidsynth.Android 之上创建了一个 Android MIDI 设备服务。要构建这样的服务，我们需要实现 android.media.midi.MidiDeviceService。整个API在输入和输出方向上非常奇怪，但实现起来倒不是很困难。</p>
+<p>通过这次尝试，我发现支持 Android MIDI API 几乎没有任何好处。我的 managed-midi API 受到了 Web MIDI API 的启发，作成了跨平台的，而且更适合为它实现 Android 后端。 因此我想出了两个实现：一个用于 MidiDeviceService，另一个用于我的 API。</p>
+<p>最终，所有的代码可以在如下的 Github 仓库查阅。<br><a href="https://github.com/atsushieno/fluidsynth-midi-service" target="_blank" rel="noopener">https://github.com/atsushieno/fluidsynth-midi-service</a></p>
+<h2 id="CMake-的切换和-android-fluidsynth-移植"><a href="#CMake-的切换和-android-fluidsynth-移植" class="headerlink" title="CMake 的切换和 android-fluidsynth 移植"></a>CMake 的切换和 android-fluidsynth 移植</h2><p>以上这些都是早些时候完成的，因此在 2018 年写这篇文章的时候，部分内容会显得有些奇怪。我原本以为会出现更多用于 Android 的软件合成器，但看来并没有。而我因为做过 android-fluidsynth 的移植，时而会被咨询相关问题。由于整个编译系统异常的复杂，所以绝大多数想尝试的人都会碰到钉子（对此深表同情）。</p>
+<p>没有文档化的一个原因是，（对我而言）状况时常变化——当我开始这个项目的时候，是基于 autotools 并托管在 <a href="https://sourceforge.net/projects/fluidsynth/" target="_blank" rel="noopener">Sourceforge</a> 上的。而现在已经迁移到 CMake 上，并托管在 <a href="https://github.com/Fluidsynth/fluidsynth/" target="_blank" rel="noopener">Github</a>。</p>
+<p>CMake 现在也是个问题——Cerbero 技术上支持 CMake，但似乎并不支持 Android。Cerbero 中可以指定自定义的工具链（例如 CC、LD 等）。但当你覆盖 CMake 配置（Android NDK 中有一个）指定的一些工具链时，会被识别为构建规格不一致，然后构建会被再次重启，而不使用指定的 CMake 配置（！）这使得我修改的构建选项被忽略掉，而构建最终会失败。目前我还没找到解决这个问题的办法。</p>
+<p>摆脱 Cerbero 是一种方法，并且存在一些备选方案——为了解决 glib 依赖问题而引入了 Cerbero。为了去掉 Cerbero，我们必须找到办法来解决 glib 的构建问题。</p>
+<p>例如 <a href="https://github.com/VolcanoMobile/fluidsynth-android" target="_blank" rel="noopener">VolcanoMobile/fluidsynth-android</a> 中移除了所有 glib 的依赖。但这会导致其与原生完全不兼容，所以并不是一个很完美的方案。不过，经过<a href="https://github.com/degill/fluidsynth-android-opensles" target="_blank" rel="noopener">努力</a>，还是将我的 OpenSLES 实现整合到了这个分支中。我正在考虑将二进制构建工件的基础切换到这个分支上。</p>
+<p>其他还有诸如 <a href="https://github.com/google/cdep/" target="_blank" rel="noopener">Google cdep</a> （我不是很喜欢他们在原始版本分叉，并添加自己的修改，这会导致合并时不必要的麻烦），或是整合 <a href="https://github.com/mono/eglib" target="_blank" rel="noopener">mono eglib</a> 来替换 glib 的依赖。不过目前为止，我对以上这些 glib-less 的方案没什么特别感觉。</p>
+<p>2018-03/12 更新：由于 eglib 没有提供 gthreads，所以这个方案不可行。</p>
+<h2 id="从用户观点来看有何不同"><a href="#从用户观点来看有何不同" class="headerlink" title="从用户观点来看有何不同"></a>从用户观点来看有何不同</h2><p>FluidSynth 针对不同平台，自动选择可能的选项进行构建。而 opensles 会在我的 Android 移植中作为默认的驱动。</p>
+<p>SoundFont 加载器的 API 上有些变化，Android 开发人员会愿意去使用（上面稍微解释了一点）。除此之外，它和原生代码没有什么区别。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leon Yeu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.ulenium.com/2019/03/09/fluidsynth-for-android/" title="用于 Android 的 FluidSynth（译）">http://blog.ulenium.com/2019/03/09/fluidsynth-for-android/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Multimedia/" rel="tag"># Multimedia</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/05/better-biometrics-in-android-p/" rel="next" title="Android P 中更好的生物认证（译文）">
+                <i class="fa fa-chevron-left"></i> Android P 中更好的生物认证（译文）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Leon Yeu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yeuleh" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yeuleh" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言（by-Leon-Yeu）"><span class="nav-number">1.</span> <span class="nav-text">前言（by Leon Yeu）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动机"><span class="nav-number">2.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译系统"><span class="nav-number">3.</span> <span class="nav-text">编译系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-OpenSLES-的实现"><span class="nav-number">4.</span> <span class="nav-text">Android/OpenSLES 的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NFluidsynth-和-FluidsynthMidiService"><span class="nav-number">5.</span> <span class="nav-text">NFluidsynth 和 FluidsynthMidiService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMake-的切换和-android-fluidsynth-移植"><span class="nav-number">6.</span> <span class="nav-text">CMake 的切换和 android-fluidsynth 移植</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从用户观点来看有何不同"><span class="nav-number">7.</span> <span class="nav-text">从用户观点来看有何不同</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon Yeu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ulenium.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.ulenium.com/2019/03/09/fluidsynth-for-android/';
+          this.page.identifier = '2019/03/09/fluidsynth-for-android/';
+          this.page.title = '用于 Android 的 FluidSynth（译）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ulenium.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
